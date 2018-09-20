@@ -4,6 +4,12 @@ import {
 } from 'react-bootstrap'
 
 class Header extends Component {
+  constructor(domain) {
+    super(domain)
+		this.domain = domain || 'http://localhost:3001'
+	}
+
+
   render() {
     return (
       <nav class="navbar navbar-inverse">
@@ -18,10 +24,12 @@ class Header extends Component {
         <a class="navbar-brand" href="#">Gone Too Far</a>
       </div>
 
+
+
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
         <ul class="nav navbar-nav">
-          <li class="active"><a href="http://localhost:3000/listings">See All Available Listings<span class="sr-only">(current)</span></a></li>
-          <li><a href="http://localhost:3000/newapartment">Create Apartment Listing</a></li>
+          <li class="active"><a href={`/listings`}>See All Available Listings<span class="sr-only">(current)</span></a></li>
+          <li><a href={`/newapartment`}>Create Apartment Listing</a></li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">

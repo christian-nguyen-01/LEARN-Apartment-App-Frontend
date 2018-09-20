@@ -1,9 +1,12 @@
 import React, { Component } from 'react'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
 
 import Listings from './pages/Listings'
 import NewApartment from './pages/NewApartment'
 import Header from './components/Header'
+import AuthService from './services'
+import Register from './pages/Register'
+import Login from './pages/Login'
 
 class App extends Component {
   constructor(props){
@@ -44,15 +47,31 @@ class App extends Component {
     console.log(form);
   }
 
+
+
   render() {
+    let auth = new AuthService
     return (
         <div>
             <Header />
             <Router>
-                <Switch>
-                    <Route exact path="/listings" render={(props) => <Listings apartments={this.state.apartments}/>} />
-                    <Route exact path="/newapartment" render={(props) => <NewApartment handleNewListingData = {this.handleNewListingData} />} />
-                </Switch>
+
+              {(auth.loggedIn())
+              // if logged in
+              ? <Switch>
+                <Route exact path="/listings" render={(props) => <Listings apartments={this.state.apartments}/>} />
+                <Route exact path="/newapartment" render={(props) => <NewApartment handleNewListingData = {this.handleNewListingData} />} />
+
+                <Route path="/register" component={Register} />
+              </Switch>
+              // if not logged in (ie Guest User)
+              : <Switch>
+                <Route exact path="/listings" render={(props) => <Listings apartments={this.state.apartments}/>} />
+                <Redirect from="/newapartment" to="/register" />
+                <Route path="/register" component={Register} />
+                <Route path="/login" component={Login} />
+              </Switch>}
+
             </Router>
         </div>
     );
