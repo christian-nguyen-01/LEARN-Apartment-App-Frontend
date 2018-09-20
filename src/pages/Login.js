@@ -41,7 +41,7 @@ class Login extends Component {
                         value="Login"
                     />
                 </form>
-                {this.state.success && <Redirect to="/protected" />}
+                {this.state.success && <Redirect to="/newapartment" />}
             </main>
         )
     }

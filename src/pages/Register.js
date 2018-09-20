@@ -10,6 +10,7 @@ class RegisterPage extends Component {
 		this.auth = new AuthService()
 		this.state = {
 			registerSuccess: false,
+
 			errors: "",
 			form: {
 				user: {
