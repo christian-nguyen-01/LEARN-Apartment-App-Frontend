@@ -39,6 +39,11 @@ class App extends Component {
       ]
     }
   }
+
+  handleNewListingData(form){
+    console.log(form);
+  }
+
   render() {
     return (
         <div>
@@ -46,6 +51,7 @@ class App extends Component {
             <Router>
                 <Switch>
                     <Route exact path="/listings" render={(props) => <Listings apartments={this.state.apartments}/>} />
+                    <Route exact path="/newapartment" render={(props) => <NewApartment handleNewListingData = {this.handleNewListingData} />} />
                 </Switch>
             </Router>
         </div>
