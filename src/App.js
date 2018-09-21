@@ -60,6 +60,7 @@ class App extends Component {
               // if logged in
               ? <Switch>
                 <Route exact path="/listings" render={(props) => <Listings apartments={this.state.apartments}/>} />
+                  <Redirect from="/login" to="/newapartment" />
                 <Route exact path="/newapartment" render={(props) => <NewApartment handleNewListingData = {this.handleNewListingData} />} />
 
                 <Route path="/register" component={Register} />
@@ -67,7 +68,7 @@ class App extends Component {
               // if not logged in (ie Guest User)
               : <Switch>
                 <Route exact path="/listings" render={(props) => <Listings apartments={this.state.apartments}/>} />
-                <Redirect from="/newapartment" to="/register" />
+                <Redirect from="/newapartment" to="/login" />
                 <Route path="/register" component={Register} />
                 <Route path="/login" component={Login} />
               </Switch>}

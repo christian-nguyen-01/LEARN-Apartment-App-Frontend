@@ -21,6 +21,7 @@ class Login extends Component {
         let { email, password } = this.state.user
         return (
             <main>
+                <h1>Login</h1>
                 <form onSubmit={this.handleSubmit}>
                     <input
                         type="email"
@@ -41,7 +42,7 @@ class Login extends Component {
                         value="Login"
                     />
                 </form>
-                {this.state.success && <Redirect to="/newapartment" />}
+                {this.state.success && window.location.reload()}
             </main>
         )
     }
